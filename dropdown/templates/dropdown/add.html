@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="{% static 'dropdown/js/jquery.min.js' %}"></script>
+    <script src="{% static 'dropdown/js/base.js' %}"></script>
+</head>
+<body>
+    <form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Submit">
+    </form>
+
+    <label for="chkEle">Check This</label>
+    <input type="checkbox" name="chkEle">
+    <div id="divEle" style="display: none;">Date stuff</div>
+
+<script>
+$("input[name=chkEle]").change(function(e){
+    $("#divEle").toggle();
+})
+
+$('#id_date_range').on('change', function (e) {
+    var optionSelected = $("option:selected", this);
+    var valueSelected = this.value;
+
+    if (valueSelected === "Custom"){
+        $('#id_event').hide();
+        $("label[for=id_event").hide();
+    } else {
+        $('#id_event').show();
+        $("label[for=id_event").show();
+    }
+});
+</script>
+</body>
+</html>
+
